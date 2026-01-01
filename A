@@ -36,3 +36,36 @@ int* plusOne(int* digits, int digitsSize, int* returnSize) {
     *returnSize = digitsSize+1;
     return res;
 }
+
+
+Intuition
+The number is stored as an array of digits, where: The last element is the least significant digit Adding 1 behaves exactly like manual addition
+
+
+Key observations:
+If the last digit is not 9, we can simply increment the last digit alone and that's the answer.
+
+If a digit is 9, adding 1 makes it 0 and produces a carry.
+
+The carry may continue moving left.
+
+If all digits are 9, we need one extra digit at the front
+(e.g., 999 → 1000).
+So, the idea is to: Start adding from the rightmost digit and stop as soon as no carry is needed.
+
+Approach
+Traverse the array from right to left.
+For each digit: 
+If the digit is not 9: Increment it by 1 Return the array immediately (no carry left)
+If the digit is 9: Set it to 0 and continue to the next digit (carry forward) 
+If the loop finishes:
+It means all digits were 9 Create a new array of size n + 1 Set the first digit to 1 Return the new array
+
+
+Complexity
+Time complexity:
+O(1) - Best Case
+O(n) - Worst case (When all elements are nine in array)
+
+Space complexity:
+O(1)
